@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Travel : MonoBehaviour
 {
+
+    [SerializeField] float speed = 5.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +17,6 @@ public class Travel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.left * Time.deltaTime * speed, Camera.main.transform);
     }
 }

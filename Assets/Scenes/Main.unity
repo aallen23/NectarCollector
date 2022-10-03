@@ -1607,7 +1607,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2135160598}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Spawn, Assembly-CSharp
         m_MethodName: StartSpawning
         m_Mode: 1
@@ -1667,8 +1667,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2135160596}
   - component: {fileID: 2135160597}
-  - component: {fileID: 2135160598}
   - component: {fileID: 2135160599}
+  - component: {fileID: 2135160600}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -1703,9 +1703,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7197414245b61d40bdc30b26d42ce3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnScript: {fileID: 2135160598}
+  spawnScript: {fileID: 2135160600}
   prefabLength: 0
---- !u!114 &2135160598
+--- !u!114 &2135160599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135160594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ff8f2b9b2e872499c2303d0c7fce53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  home: {fileID: 1169922585}
+  ui: {fileID: 1603366406}
+  endGame: {fileID: 309788752}
+  score: {fileID: 1986878258}
+  health: {fileID: 689259690}
+  finalScore: {fileID: 1762731070}
+--- !u!114 &2135160600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1737,21 +1755,3 @@ MonoBehaviour:
   spawnPos3: {x: 0, y: 0, z: 0}
   spawn: 0
   ranNum: {fileID: 2135160597}
---- !u!114 &2135160599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2135160594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ff8f2b9b2e872499c2303d0c7fce53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  home: {fileID: 1169922585}
-  ui: {fileID: 1603366406}
-  endGame: {fileID: 309788752}
-  score: {fileID: 1986878258}
-  health: {fileID: 689259690}
-  finalScore: {fileID: 1762731070}

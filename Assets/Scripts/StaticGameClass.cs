@@ -5,8 +5,8 @@ using UnityEngine;
 public static class StaticGameClass
 {
 
-    public static int score;
-    public static int health;
+    public static int score = 0;
+    public static int health = 3;
 
     public static int GetScore()
     {

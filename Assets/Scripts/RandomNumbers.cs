@@ -27,7 +27,7 @@ public class RandomNumbers : MonoBehaviour
 
     public int PrefabIndex()
     {
-        return Random.Range(0, prefabLength - 1);
+        return Random.Range(0, prefabLength);
     }
 
 

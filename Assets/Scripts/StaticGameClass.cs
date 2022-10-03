@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticGameClass : MonoBehaviour
+public static class StaticGameClass
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public static int score;
+    public static int health;
+
+    public static int GetScore()
     {
-        
+        return score;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static int GetHealth()
     {
-        
+        return health;
     }
+
+    public static void IncreaseScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+    }
+
+    public static void TakeDamage()
+    {
+        health--;
+    }
+
 }

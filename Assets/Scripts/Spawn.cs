@@ -12,8 +12,8 @@ public class Spawn : MonoBehaviour
 
     [SerializeField] int index;
 
-    [SerializeField] float spawnPosX;
-    [SerializeField] float spawnPosZ;
+    [SerializeField] float spawnPosX = 15.0f;
+    [SerializeField] float spawnPosZ = 0.0f;
     [SerializeField] Vector3 spawnPos1, spawnPos2, spawnPos3;
 
     public bool spawn = false;
@@ -25,19 +25,12 @@ public class Spawn : MonoBehaviour
     {
         prefabLength = collisionPrefabs.Length;
 
-        spawnPos1 = new Vector3(spawnPosX, 1.0f, spawnPosZ);
+        spawnPos1 = new Vector3(spawnPosX, 4.5f, spawnPosZ);
         spawnPos2 = new Vector3(spawnPosX, 1.0f, spawnPosZ);
-        spawnPos3 = new Vector3(spawnPosX, 1.0f, spawnPosZ);
-    }
+        spawnPos3 = new Vector3(spawnPosX, -2.5f, spawnPosZ);
 
-    public void StartSpawning()
-    {
-        spawn = true;
-        StartCoroutine(SpawnIn(spawnPos1));
-        StartCoroutine(SpawnIn(spawnPos2));
-        StartCoroutine(SpawnIn(spawnPos3));
+        StartSpawning();
     }
-
 
     // Update is called once per frame
     void Update()
@@ -45,17 +38,34 @@ public class Spawn : MonoBehaviour
 
     }
 
+    public void StartSpawning()
+    {
+        spawn = true;
+        if (spawn)
+        {
+            StartCoroutine(SpawnIn(spawnPos1));
+            StartCoroutine(SpawnIn(spawnPos2));
+            StartCoroutine(SpawnIn(spawnPos3));
+        }
+    }
+
+    public void StopSpawning()
+    {
+        spawn = false;
+    }
 
     IEnumerator SpawnIn(Vector3 spawnPos)
     {
-        if (spawn)
+        while (spawn)
         {
             index = ranNum.PrefabIndex();
 
             Instantiate(collisionPrefabs[index], spawnPos, collisionPrefabs[index].transform.rotation);
+
+            yield return new WaitForSeconds(ranNum.SpawnInterval());
         }
 
-        yield return new WaitForSeconds(ranNum.SpawnInterval());
+
     }
 
 

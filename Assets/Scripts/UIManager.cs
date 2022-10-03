@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class DestroyOutofBounds : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
 
-    private float bound = -25.0f;
+    public TMP_Text score;
+    public TMP_Text health;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +18,8 @@ public class DestroyOutofBounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x <= bound)
-        {
-            Destroy(gameObject);
-        }
+        health.text = "Health: " + StaticGameClass.health;
+        score.text = "Score: " + StaticGameClass.score;
     }
+
 }

@@ -544,9 +544,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8811488991436921933}
   - component: {fileID: 8922061360953856558}
+  - component: {fileID: 2705189012420167448}
+  - component: {fileID: 4113194917598156162}
   m_Layer: 0
   m_Name: FlowerGold
-  m_TagString: Untagged
+  m_TagString: GoldFlower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,6 +584,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!114 &2705189012420167448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143460449223739127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1747c75692444654eb2de6c98c5138e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4113194917598156162
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143460449223739127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5, y: 1.5, z: 3.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8198982960710746889
 GameObject:
   m_ObjectHideFlags: 0

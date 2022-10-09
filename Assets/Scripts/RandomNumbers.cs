@@ -5,13 +5,12 @@ using UnityEngine;
 public class RandomNumbers : MonoBehaviour
 {
 
-    public Spawn spawnScript;
     public int prefabLength;
 
     // Start is called before the first frame update
     void Start()
     {
-        prefabLength = spawnScript.prefabLength;
+        prefabLength = 10;
     }
 
     // Update is called once per frame

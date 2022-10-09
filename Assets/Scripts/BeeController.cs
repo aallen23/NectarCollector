@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BeeController : MonoBehaviour
 {
-    private Touch theTouch;
-
+    private Touch touch;
     public Vector3 targetPos;
 
     private Rigidbody rb;
+
+    public float screenHeight;
 
     public float speed = 2.0f;
 
@@ -21,6 +22,8 @@ public class BeeController : MonoBehaviour
     public UIManager UIManager;
     public Spawn Spawn;
 
+    public bool end;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,8 @@ public class BeeController : MonoBehaviour
         UIManager = gm.GetComponent<UIManager>();
         Spawn = gm.GetComponent<Spawn>();
         rb = GetComponent<Rigidbody>();
+        screenHeight = Screen.height;
+        end = false;
     }
 
     // Update is called once per frame
@@ -36,17 +41,22 @@ public class BeeController : MonoBehaviour
         health = StaticGameClass.health;
         if(health == 0)
         {
+            end = true;
             EndGame();
+        }
+
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            if(touch.phase == TouchPhase.Ended)
+            {
+                MoveBee(touch);
+            }
         }
     }
 
     void FixedUpdate()
     {
-        if (Input.touchCount > 0)
-        {
-            theTouch = Input.GetTouch(0);
-            MoveBee(theTouch);
-        }
 
     }
 
@@ -54,28 +64,30 @@ public class BeeController : MonoBehaviour
     {
         Debug.Log("collided");
 
-        if(other.tag == "Flower")
+        if (!end)
         {
-            StaticGameClass.IncreaseScore(flowerScore);
-        }
+            if (other.tag == "Flower")
+            {
+                StaticGameClass.IncreaseScore(flowerScore);
+            }
 
-        if(other.tag == "Obstacle")
-        {
-            StaticGameClass.TakeDamage();
-        }
+            if (other.tag == "Obstacle")
+            {
+                StaticGameClass.TakeDamage();
+            }
 
-        if(other.tag == "GoldFlower")
-        {
-            StaticGameClass.IncreaseScore(goldScore);
+            if (other.tag == "GoldFlower")
+            {
+                StaticGameClass.IncreaseScore(goldScore);
+            }
         }
 
         Destroy(other.gameObject);
     }
 
-    public void MoveBee(Touch theTouch)
+    public void MoveBee(Touch touch)
     {
-
-        if (theTouch.position.y > 500)
+        if (touch.position.y > (screenHeight / 2))
         {
             if (transform.position.y == -2.5f)
             {
@@ -94,7 +106,7 @@ public class BeeController : MonoBehaviour
             }
         }
 
-        else if (theTouch.position.y < 500)
+        else if (touch.position.y < (screenHeight / 2))
         {
             if (transform.position.y == 1.0f)
             {
@@ -111,7 +123,9 @@ public class BeeController : MonoBehaviour
                 rb.MovePosition(targetPos);
                 //move bee down to 1.0f
             }
+
         }
+
     }
 
     public void EndGame()

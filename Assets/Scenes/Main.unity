@@ -1357,6 +1357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0, z: 0}
+  screenHeight: 0
   speed: 2
   health: 0
   flowerScore: 1
@@ -1364,6 +1365,7 @@ MonoBehaviour:
   gm: {fileID: 0}
   UIManager: {fileID: 0}
   Spawn: {fileID: 0}
+  end: 0
 --- !u!1 &1986878257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,8 +1705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7197414245b61d40bdc30b26d42ce3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnScript: {fileID: 2135160600}
-  prefabLength: 0
+  prefabLength: 10
 --- !u!114 &2135160599
 MonoBehaviour:
   m_ObjectHideFlags: 0

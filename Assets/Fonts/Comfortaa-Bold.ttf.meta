@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3003093c0355da245a877a4c3513b233
+guid: 7957906e4ffaea04b91ae06b05dd8dab
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Paper Daisy DEMO
+  - Comfortaa
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

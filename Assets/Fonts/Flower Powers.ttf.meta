@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aacae55a1152fd3409485fc01a11c2b0
+guid: 4b12b6b80afbad043af5fb5876023368
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - coffee+tea demo
+  - Flower Powers
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

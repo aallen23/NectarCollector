@@ -28,4 +28,13 @@ public static class StaticGameClass
         health--;
     }
 
+    public static void ResetHealth()
+    {
+        health = 3;
+    }
+
+    public static void ResetScore()
+    {
+        score = 0;
+    }
 }

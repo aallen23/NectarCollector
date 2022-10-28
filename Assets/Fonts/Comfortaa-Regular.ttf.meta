@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4c27d75f91a6d4547bc716aa855ae44e
+guid: 1f2df320950530f4c8a8a29af50647c7
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,8 +9,9 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - btd BeezWax
-  fallbackFontReferences: []
+  - Comfortaa
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7957906e4ffaea04b91ae06b05dd8dab, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

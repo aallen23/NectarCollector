@@ -28,8 +28,6 @@ public class Spawn : MonoBehaviour
         spawnPos1 = new Vector3(spawnPosX, 4.5f, spawnPosZ);
         spawnPos2 = new Vector3(spawnPosX, 1.0f, spawnPosZ);
         spawnPos3 = new Vector3(spawnPosX, -2.5f, spawnPosZ);
-
-        StartSpawning();
     }
 
     // Update is called once per frame

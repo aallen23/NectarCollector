@@ -62,7 +62,6 @@ public class BeeController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collided");
 
         if (!end)
         {
@@ -74,6 +73,7 @@ public class BeeController : MonoBehaviour
             if (other.tag == "Obstacle")
             {
                 StaticGameClass.TakeDamage();
+                UIManager.UpdateHealth();
             }
 
             if (other.tag == "GoldFlower")
@@ -91,7 +91,7 @@ public class BeeController : MonoBehaviour
         {
             if (transform.position.y == -2.5f)
             {
-                Debug.Log("move up");
+                
                 targetPos = new Vector3(transform.position.x, 1.0f, transform.position.z);
                 rb.MovePosition(targetPos);
                 //move bee up to 1.0f
@@ -99,7 +99,7 @@ public class BeeController : MonoBehaviour
 
             else if (transform.position.y == 1.0f)
             {
-                Debug.Log("move up");
+               
                 targetPos = new Vector3(transform.position.x, 4.5f, transform.position.z);
                 rb.MovePosition(targetPos);
                 //move bee up to 4.5f
@@ -110,7 +110,7 @@ public class BeeController : MonoBehaviour
         {
             if (transform.position.y == 1.0f)
             {
-                Debug.Log("move down");
+                
                 targetPos = new Vector3(transform.position.x, -2.5f, transform.position.z);
                 rb.MovePosition(targetPos);
                 //move bee down to -2.5f
@@ -118,7 +118,7 @@ public class BeeController : MonoBehaviour
 
             else if (transform.position.y == 4.5f)
             {
-                Debug.Log("move down");
+               
                 targetPos = new Vector3(transform.position.x, 1.0f, transform.position.z);
                 rb.MovePosition(targetPos);
                 //move bee down to 1.0f

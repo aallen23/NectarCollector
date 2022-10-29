@@ -5,10 +5,11 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     [SerializeField] GameObject[] collisionPrefabs;
+    [SerializeField] GameObject spawnHolder;
 
-    //[SerializeField] float startDelay = 2;
-
-    public int prefabLength;
+    [SerializeField] GameObject[] obstaclesInScene;
+    public int obstacleCount;
+    public int obstacleCap;
 
     [SerializeField] int index;
 
@@ -23,7 +24,7 @@ public class Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        prefabLength = collisionPrefabs.Length;
+        obstacleCap = 5;
 
         spawnPos1 = new Vector3(spawnPosX, 4.5f, spawnPosZ);
         spawnPos2 = new Vector3(spawnPosX, 1.0f, spawnPosZ);
@@ -33,7 +34,8 @@ public class Spawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        obstaclesInScene = GameObject.FindGameObjectsWithTag("Obstacle");
+        obstacleCount = obstaclesInScene.Length;
     }
 
     public void StartSpawning()
@@ -54,15 +56,26 @@ public class Spawn : MonoBehaviour
 
     IEnumerator SpawnIn(Vector3 spawnPos)
     {
-        while (spawn)
+
+        if(StaticGameClass.playing == true)
         {
-            index = ranNum.PrefabIndex();
+            while (spawn)
+            {
+                if (obstacleCount < obstacleCap)
+                {
+                    index = ranNum.PrefabIndex(10);
+                }
 
-            Instantiate(collisionPrefabs[index], spawnPos, collisionPrefabs[index].transform.rotation);
+                else if (obstacleCount >= obstacleCap)
+                {
+                    index = ranNum.PrefabIndex(6);
+                }
 
-            yield return new WaitForSeconds(ranNum.SpawnInterval());
+                Instantiate(collisionPrefabs[index], spawnPos, collisionPrefabs[index].transform.rotation, spawnHolder.transform);
+
+                yield return new WaitForSeconds(ranNum.SpawnInterval());
+            }
         }
-
 
     }
 

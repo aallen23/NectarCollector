@@ -7,11 +7,14 @@ public class BeeController : MonoBehaviour
     private Touch touch;
     public Vector3 targetPos;
 
-    private Rigidbody rb;
+    //private Rigidbody rb;
 
     public float screenHeight;
 
-    public float speed = 2.0f;
+    public float xValue;
+    public float zValue;
+
+    private float lerp;
 
     public int health;
 
@@ -22,6 +25,11 @@ public class BeeController : MonoBehaviour
     public UIManager UIManager;
     public Spawn Spawn;
 
+    public AudioSource goldAudio;
+    public AudioSource collisionAudio;
+    public AudioClip gold;
+    public AudioClip collision;
+
     public bool end;
 
     // Start is called before the first frame update
@@ -30,9 +38,12 @@ public class BeeController : MonoBehaviour
         gm = GameObject.FindWithTag("GameManager");
         UIManager = gm.GetComponent<UIManager>();
         Spawn = gm.GetComponent<Spawn>();
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         screenHeight = Screen.height;
         end = false;
+        xValue = -5.0f;
+        zValue = -1.0f;
+        lerp = 0.2f;
     }
 
     // Update is called once per frame
@@ -42,7 +53,7 @@ public class BeeController : MonoBehaviour
         if(health == 0)
         {
             end = true;
-            EndGame();
+            StartCoroutine(EndGame());
         }
 
         if (Input.touchCount > 0)
@@ -53,11 +64,6 @@ public class BeeController : MonoBehaviour
                 MoveBee(touch);
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -72,12 +78,14 @@ public class BeeController : MonoBehaviour
 
             if (other.tag == "Obstacle")
             {
+                collisionAudio.PlayOneShot(collision, 1.5f);
                 StaticGameClass.TakeDamage();
                 UIManager.UpdateHealth();
             }
 
             if (other.tag == "GoldFlower")
             {
+                goldAudio.PlayOneShot(gold, 0.7f);
                 StaticGameClass.IncreaseScore(goldScore);
             }
         }
@@ -91,18 +99,14 @@ public class BeeController : MonoBehaviour
         {
             if (transform.position.y == -2.5f)
             {
-                
-                targetPos = new Vector3(transform.position.x, 1.0f, transform.position.z);
-                rb.MovePosition(targetPos);
-                //move bee up to 1.0f
+                targetPos = new Vector3(xValue, 1.0f, zValue);
+                StartCoroutine(Lerp(transform.position, targetPos));
             }
 
             else if (transform.position.y == 1.0f)
             {
-               
-                targetPos = new Vector3(transform.position.x, 4.5f, transform.position.z);
-                rb.MovePosition(targetPos);
-                //move bee up to 4.5f
+                targetPos = new Vector3(xValue, 4.5f, zValue);
+                StartCoroutine(Lerp(transform.position, targetPos));
             }
         }
 
@@ -110,27 +114,39 @@ public class BeeController : MonoBehaviour
         {
             if (transform.position.y == 1.0f)
             {
-                
-                targetPos = new Vector3(transform.position.x, -2.5f, transform.position.z);
-                rb.MovePosition(targetPos);
-                //move bee down to -2.5f
+                targetPos = new Vector3(xValue, -2.5f, zValue);
+                StartCoroutine(Lerp(transform.position, targetPos));
             }
 
             else if (transform.position.y == 4.5f)
             {
-               
-                targetPos = new Vector3(transform.position.x, 1.0f, transform.position.z);
-                rb.MovePosition(targetPos);
-                //move bee down to 1.0f
+                targetPos = new Vector3(xValue, 1.0f, zValue);
+                StartCoroutine(Lerp(transform.position, targetPos));
             }
 
         }
 
     }
 
-    public void EndGame()
+    IEnumerator Lerp(Vector3 startPos, Vector3 targetPos)
     {
+        float time = 0;
+        while (time < lerp)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, time / lerp);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPos;
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(0.2f);
+        StaticGameClass.PlayingFalse();
         Spawn.StopSpawning();
+        end = false;
+        UIManager.DestroyAll();
         UIManager.SetFinalScore();
         UIManager.DisableUI();
         UIManager.EnableEndGame();

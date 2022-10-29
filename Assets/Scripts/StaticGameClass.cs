@@ -8,6 +8,18 @@ public static class StaticGameClass
     public static int score = 0;
     public static int health = 3;
 
+    public static bool playing = false;
+
+    public static void PlayingTrue()
+    {
+        playing = true;
+    }
+
+    public static void PlayingFalse()
+    {
+        playing = false;
+    }
+
     public static int GetScore()
     {
         return score;

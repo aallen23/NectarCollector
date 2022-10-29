@@ -88,6 +88,7 @@ public class UIManager : MonoBehaviour
         home.SetActive(false);
         bee.SetActive(true);
         ui.SetActive(true);
+        bc.ResetBee();
         spawnHolder.SetActive(true);
         speedTracker.Activate();
         spawn.StartSpawning();
@@ -158,6 +159,7 @@ public class UIManager : MonoBehaviour
         DestroyAll();
         ResetHealthBar();
         speedTracker.ResetSpeed();
+        bc.ResetBee();
         bc.end = false;
         endGame.SetActive(false);
         bee.SetActive(true);

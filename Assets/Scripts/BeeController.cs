@@ -7,8 +7,6 @@ public class BeeController : MonoBehaviour
     private Touch touch;
     public Vector3 targetPos;
 
-    //private Rigidbody rb;
-
     public float screenHeight;
 
     public float xValue;
@@ -27,8 +25,10 @@ public class BeeController : MonoBehaviour
 
     public AudioSource goldAudio;
     public AudioSource collisionAudio;
+    public AudioSource chimeAudio;
     public AudioClip gold;
     public AudioClip collision;
+    public AudioClip chime;
 
     public bool end;
 
@@ -73,7 +73,12 @@ public class BeeController : MonoBehaviour
         {
             if (other.tag == "Flower")
             {
+                chimeAudio.PlayOneShot(chime, 0.7f);
                 StaticGameClass.IncreaseScore(flowerScore);
+                if(other.transform.Find("Pollen") != null)
+                {
+                    Destroy(other.transform.Find("Pollen").gameObject);
+                }
             }
 
             if (other.tag == "Obstacle")
@@ -87,10 +92,21 @@ public class BeeController : MonoBehaviour
             {
                 goldAudio.PlayOneShot(gold, 0.7f);
                 StaticGameClass.IncreaseScore(goldScore);
+                if (other.transform.Find("Pollen") != null)
+                {
+                    Destroy(other.transform.Find("Pollen").gameObject);
+                }
+                if (other.transform.Find("Particle System") != null)
+                {
+                    Destroy(other.transform.Find("Particle System").gameObject);
+                }
+                if (other.transform.Find("Audio Source") != null)
+                {
+                    Destroy(other.transform.Find("Audio Source").gameObject);
+                }
             }
         }
 
-        Destroy(other.gameObject);
     }
 
     public void MoveBee(Touch touch)
@@ -126,6 +142,11 @@ public class BeeController : MonoBehaviour
 
         }
 
+    }
+
+    public void ResetBee()
+    {
+        transform.position = new Vector3(-5, 1, -1);
     }
 
     IEnumerator Lerp(Vector3 startPos, Vector3 targetPos)
